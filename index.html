@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List App Webpage</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List Webpage</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>To-Do list</h1>
-
-    <script src="app.js"></script>
+  <div class="todo-container">
+    <header>
+      <h1>To-Do List</h1>
+      <h4>Created by Amaan Ahmed</h4>
+      <div class="input-cont">
+        <input type="text" id="input" placeholder="Here you can add a new todo task...">
+        <button id="addButton"><i class="fa-solid fa-plus"></i> Add</button>
+      </div>
+      <div class="buttons-cont">
+        <button id="deleteAllButton"><i class="fa-solid fa-trash"></i>Delete All</button>
+        <button id="showAllButton"><i class="fa-solid fa-check-double"></i>Show All</button>
+        <button id="showCompletedButton"><i class="fa-regular fa-circle-check"></i>Show Completed</button>
+        <button id="showIncompleteButton"><i class="fa-regular fa-circle-xmark"></i>Show Incomplete</button>
+      </div>
+    </header>
+    <ul id="todosHtml"></ul>
+    <img id="emptyImage" src="empty.png" alt="No todos" style="display: none;" > 
+  </div>
+  <script src="app.js"></script>
 </body>
 </html>
