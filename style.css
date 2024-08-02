@@ -68,7 +68,7 @@
     font-size: 18px;
     text-align: center;
     color: #ffffff;
-    padding: 2px;
+    padding: 4px;
   }
 
   #emptyImage{
@@ -186,7 +186,7 @@
     padding-bottom: 8px;
     border-bottom: 2px solid white;
     animation: slideIn 0.5s ease-out;
-    font-family: cursive;
+    /* font-family: cursive; */
   }
   
   li:last-child {

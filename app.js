@@ -30,9 +30,17 @@
       return `
         <li>
           <div class="todo-details">
-            <input type="checkbox" id="todo-${index}" ${todo.status === 'completed' ? 'checked' : ''} onchange="updateStatus(this)" data-index="${index}">
+          <label for="todo-${index}">
+            <input 
+              type="checkbox" 
+              id="todo-${index}" 
+              ${todo.status === 'completed' ? 'checked' : ''} 
+              onchange="updateStatus(this)" 
+              data-index="${index}"
+            >
             <span class="todo-name ${todo.status === 'completed' ? 'checked' : ''}">${todo.name}</span>
-            <span class="timestamp">${todo.timestamp}</span>
+            </label>
+            <span class="timestamp">Add on= ${todo.timestamp}</span>
           </div>
           <button class="edit" onclick="editTask(this)" data-index="${index}"><i class="fa-regular fa-pen-to-square"></i>Edit</button>
           <button class="remove" onclick="remove(this)" data-index="${index}"><i class="fa-solid fa-text-slash"></i> Remove</button>
