@@ -1,13 +1,13 @@
-    const todosHtml = document.querySelector("#todosHtml");
-    const input = document.querySelector("#input");
-    const addButton = document.querySelector("#addButton");
-    const deleteAllButton = document.querySelector("#deleteAllButton");
-    const showAllButton = document.querySelector("#showAllButton");
-    const showCompletedButton = document.querySelector("#showCompletedButton");
-    const showIncompleteButton = document.querySelector("#showIncompleteButton");
-    const emptyImage = document.querySelector("#emptyImage");
+const todosHtml = document.querySelector("#todosHtml");
+const input = document.querySelector("#input");
+const addButton = document.querySelector("#addButton");
+const deleteAllButton = document.querySelector("#deleteAllButton");
+const showAllButton = document.querySelector("#showAllButton");
+const showCompletedButton = document.querySelector("#showCompletedButton");
+const showIncompleteButton = document.querySelector("#showIncompleteButton");
+const emptyImage = document.querySelector("#emptyImage");
 
-    //To store todo list browser
+    //To store To-Do list browser
     let todosJson = JSON.parse(localStorage.getItem("todos")) || [];
   
     function showTodos(filter = '') {
@@ -100,5 +100,5 @@
         showTodos();
       }
     }
-  
+
     showTodos();

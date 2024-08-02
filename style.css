@@ -1,11 +1,11 @@
 * {
     margin: 0; 
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: cursive;
   }
 
   body {
-    background-image: url(backgroundimg.jpg);
+    background-image: url(backgroundimg.jpg);   /* background img is take by unsplash free copywrite */
     background-position: center;
     background-size: cover;
     display: flex;
@@ -22,52 +22,37 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(21, 183, 185, 1);
-    width: 560px;
-    max-height: 80vh;
+    width: 600px;
+    max-height: 84vh;
     display: flex;
     flex-direction: column;
     animation: fadeIn 3s ease-in-out;
     overflow:hidden;
-    /* position: relative; */
   }
-
-
-  /* .todo-container::after{
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: red;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    z-index: -1;
-    padding: 30px;
-  } */
-  
 
   header {
     position: sticky;
     top: 0;
     background: transparent;
-    /* padding-bottom: 10px; */
-    /* margin-bottom: 10px; */
+    padding-bottom: 4px; 
+    margin-bottom: 4px;
     z-index: 1;
   }
   
   h1 {
+    font-family:Arial, Helvetica, sans-serif;
     margin-top: 0;
     font-size: 28px;
     text-align: center;
     color: #000814;
-    padding: 2px;
+    padding: 3px;
   }
 
   h4 {
     margin-top: 0;
     font-size: 18px;
     text-align: center;
-    color: #ffffff;
+    color: white;
     padding: 4px;
   }
 
@@ -77,13 +62,12 @@
   
   .input-cont {
     display: flex;
-    gap: 10px;
     border: 2px solid #e6b7eca1;
     box-shadow: 0 0 20px rgba(21, 183, 185, 1);
     border-radius: 10px;
     backdrop-filter: blur(3px);
   }
-  
+
   input[type="text"] {
     flex-grow: 1;
     padding: 10px;
@@ -93,18 +77,14 @@
     font-size: medium;
     font-weight:700;
     background: transparent;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 2px solid black;
+    border-radius: 6px;
     transition: border-color 0.3s;
   }
 
   input::placeholder{
     font-weight: bold;
-    color: aqua;
-  }
-  
-  input[type="text"]:focus {
-    border-color: #007bff;
+    color: whitesmoke;
   }
   
   button {
@@ -118,6 +98,15 @@
     transition: background-color 0.3s, transform 0.3s;
   }
 
+  .buttons-cont {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    backdrop-filter: blur(3px);
+  }
+
   #addButton{
     border: none;
   }
@@ -126,20 +115,15 @@
     background-color: #218838;
     transform: translateY(-2px);
   }
-  
+
   button:active {
-    background-color:aqua;
+    background-color:cyan;
   }
-  
-  .buttons-cont {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    backdrop-filter: blur(3px);
-  } 
-  
+
+  button#showAllButton:active, button#showCompletedButton:active {
+    background-color: #0069d9;
+  }
+
   button#deleteAllButton:hover {
     background-color: #dc3545;
   }
@@ -147,13 +131,8 @@
   button#deleteAllButton:active {
     background-color: #bd2130;
   }
-  
-  button#showIncompleteButton:hover { 
-    background-color: #0069d9;
-  }
 
-  button#showAllButton:active, button#showCompletedButton:active {
-    /* background-color: #0056b3; */
+  button#showIncompleteButton:hover { 
     background-color: #0069d9;
   }
 
@@ -162,31 +141,27 @@
   }
 
   ul {
-    /* background-color: transparent; */
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(7px);
     border: 2px solid #e6b7eca1;
     box-shadow: 0 0 20px rgba(21, 183, 185, 1);
     border-radius: 8px;
-    list-style:decimal-leading-zero;
-    color:white ;
-    font-weight:normal;
-    font-size:medium;
+    list-style:none;
+    font-family: cursive;
     flex-grow: 1;
     overflow-y: auto;
     max-height: calc(80vh - 150px);
-    padding: 4px;
+    padding: 3px;
   }
   
   li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 5px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid white;
+    gap: 2px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid black;
     animation: slideIn 0.5s ease-out;
-    /* font-family: cursive; */
   }
   
   li:last-child {
@@ -198,7 +173,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 5px;
+  }
+
+  .todo-name{
+    font-size: medium;
+    color:whitesmoke;
+    font-family: cursive;
+    font-weight:600;
   }
   
   .checked {
@@ -207,17 +188,17 @@
   }
   
   .timestamp {
-    font-size: 0.8em;
-    color:chartreuse ;
-    margin-left: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    color:greenyellow;
+    font-family: system-ui;
   }
-  
+
   button.edit {
-    /* background-color: #ffc107; */
     background: transparent;
     color: aqua;
-    padding: 8px;
-    /* margin-right: 3px; */
+    padding: 4px;
+    font-size: 12px;
   }
   
   button.edit:hover {
@@ -229,10 +210,10 @@
   }
   
   button.remove {
-    /* background-color: #dc3545; */
     background: transparent;
     color: aqua;
-    padding: 7px;
+    padding: 4px;
+    font-size: 12px;
   }
   
   button.remove:hover {
