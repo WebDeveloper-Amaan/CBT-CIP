@@ -278,6 +278,7 @@ button.remove:active {
       margin-bottom: 10px;
       margin-right: 0;
       font-size: 14px;
+      font-family: 'Times New Roman', Times, serif;
   }
 
   .buttons-cont {
@@ -330,6 +331,7 @@ button.remove:active {
   input[type="text"] {
       font-size: 14px;
       padding: 8px;
+      font-family: 'Times New Roman', Times, serif;
   }
 
   button {
