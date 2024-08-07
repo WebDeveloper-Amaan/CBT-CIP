@@ -1,9 +1,11 @@
+/* Reset default margins and padding */
 * {
   margin: 0; 
   padding: 0;
   font-family: cursive;
 }
 
+/* Set background image for the body */
 body {
   background-image: url(backgroundimg.jpg);
   background-position: center;
@@ -16,6 +18,7 @@ body {
   overflow: scroll;
 }
 
+/* Container for the todo list */
 .todo-container {
   background: transparent;
   border: 2px solid #e6b7eca1;
@@ -30,6 +33,7 @@ body {
   overflow: hidden;
 }
 
+/* Header styling */
 header {
   position: sticky;
   top: 0;
@@ -39,6 +43,7 @@ header {
   z-index: 1;
 }
 
+/* Title styling */
 h1 {
   font-family: Arial, Helvetica, sans-serif;
   margin-top: 0;
@@ -48,6 +53,7 @@ h1 {
   padding: 3px;
 }
 
+/* Subtitle styling */
 h4 {
   margin-top: 0;
   font-size: 18px;
@@ -56,10 +62,12 @@ h4 {
   padding: 4px;
 }
 
+/* Styling for the empty state image */
 #emptyImage {
   opacity: 0.5;
 }
 
+/* Input container styling */
 .input-cont {
   display: flex;
   border: 2px solid #e6b7eca1;
@@ -69,6 +77,7 @@ h4 {
   overflow: hidden;
 }
 
+/* Input box styling */
 input[type="text"] {
   flex-grow: 1;
   padding: 10px;
@@ -84,11 +93,13 @@ input[type="text"] {
   box-sizing: border-box;
 }
 
+/* Placeholder styling */
 input::placeholder {
   font-weight: bold;
   color: whitesmoke;
 }
 
+/* Button styling */
 button {
   padding: 10px;
   border: 3px solid #e6b7eca1;
@@ -100,6 +111,7 @@ button {
   transition: background-color 0.3s, transform 0.3s;
 }
 
+/* Container for filter buttons */
 .buttons-cont {
   display: flex;
   flex-wrap: wrap;
@@ -109,10 +121,12 @@ button {
   backdrop-filter: blur(3px);
 }
 
+/* Special styling for add button */
 #addButton {
   border: none;
 }
 
+/* Hover and active states for buttons */
 button:hover {
   background-color: #218838;
   transform: translateY(-2px);
@@ -142,6 +156,7 @@ button#showIncompleteButton:active {
   background-color: #bd2130;
 }
 
+/* List styling */
 ul {
   backdrop-filter: blur(7px);
   border: 2px solid #e6b7eca1;
@@ -154,6 +169,7 @@ ul {
   padding: 3px;
 }
 
+/* List item styling */
 li {
   display: flex;
   justify-content: space-between;
@@ -169,6 +185,7 @@ li:last-child {
   border-bottom: none;
 }
 
+/* Container for task details */
 li .todo-details {
   flex-grow: 1;
   display: flex;
@@ -176,6 +193,7 @@ li .todo-details {
   align-items: center;
 }
 
+/* Task name styling */
 .todo-name {
   font-size: medium;
   color: whitesmoke;
@@ -183,11 +201,13 @@ li .todo-details {
   font-weight: 600;
 }
 
+/* Styling for completed tasks */
 .checked {
   text-decoration: line-through;
   color: red;
 }
 
+/* Timestamp styling */
 .timestamp {
   font-size: 10px;
   font-weight: 700;
@@ -195,6 +215,7 @@ li .todo-details {
   font-family: system-ui;
 }
 
+/* Edit button styling */
 button.edit {
   background: transparent;
   color: aqua;
@@ -210,6 +231,7 @@ button.edit:active {
   background-color: #d39e00;
 }
 
+/* Remove button styling */
 button.remove {
   background: transparent;
   color: aqua;
@@ -225,11 +247,13 @@ button.remove:active {
   background-color: #bd2130;
 }
 
+/* Animation for fading in */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
+/* Animation for sliding in */
 @keyframes slideIn {
   from { transform: translateX(-100%); }
   to { transform: translateX(0); }
@@ -273,6 +297,7 @@ button.remove:active {
 
   .todo-name {
       font-size: 14px;
+      font-family: 'Times New Roman', Times, serif; /* Changed font-family */
   }
 
   .timestamp {
@@ -333,6 +358,10 @@ button.remove:active {
   li {
       padding: 10px;
       font-size: small;
+  }
+
+  .todo-name {
+      font-family: 'Times New Roman', Times, serif; /* Changed font-family */
   }
 
   .timestamp {

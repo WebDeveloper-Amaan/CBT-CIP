@@ -5,29 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo List Webpage</title>
   <link rel="shortcut icon" type="image/x-icon" href="titleImg.svg"/>
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Link to external CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="todo-container">
     <header>
       <h1>To-Do List</h1>
-      <h4>Created by Amaan Ahmed</h4>
+      <h4><i class="fa-regular fa-copyright"></i> Created by Amaan Ahmed</h4>
       <div class="input-cont">
+        <!-- Input box for new tasks -->
         <input type="text" id="input" placeholder="Here you can add a new todo task...">
+        <!-- Button to add new tasks -->
         <button id="addButton"><i class="fa-solid fa-plus"></i> Add</button>
       </div>
       <div class="buttons-cont">
+        <!-- Button to delete all tasks -->
         <button id="deleteAllButton"><i class="fa-solid fa-trash"></i>Delete All</button>
+        <!-- Buttons to filter tasks -->
         <button id="showAllButton"><i class="fa-solid fa-check-double"></i>Show All</button>
         <button id="showCompletedButton"><i class="fa-regular fa-circle-check"></i>Show Completed</button>
         <button id="showIncompleteButton"><i class="fa-regular fa-circle-xmark"></i>Show Incomplete</button>
       </div>
     </header>
+    <!-- Container to display the list of tasks -->
     <ul id="todosHtml"></ul>
-    <img id="emptyImage" src="empty.png" alt="No todos" style="display: none;" > 
+    <!-- Image to display when no tasks are available -->
+    <img id="emptyImage" src="empty.png" alt="No todos" style="display: none;">
   </div>
  <main>
+  <!-- Link to external JavaScript -->
   <script src="app.js"></script>
  </main>
 </body>
