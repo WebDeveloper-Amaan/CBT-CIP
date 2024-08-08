@@ -7,33 +7,28 @@ const showCompletedButton = document.querySelector("#showCompletedButton");
 const showIncompleteButton = document.querySelector("#showIncompleteButton");
 const emptyImage = document.querySelector("#emptyImage");
 
-// Load todos from localStorage or initialize an empty array if none exist
 let todosJson = JSON.parse(localStorage.getItem("todos")) || [];
-let currentFilter = ''; // Track the current filter status (all, completed, incomplete)
+let currentFilter = '';
 
-// Function to display todos based on the filter
+// Function to display todos based on the current filter
 function showTodos(filter = '') {
-  currentFilter = filter; // Set the current filter
+  currentFilter = filter;
   let filteredTodos = todosJson;
-  
-  // Apply the filter
   if (filter === 'completed') {
     filteredTodos = todosJson.filter(todo => todo.status === 'completed');
   } else if (filter === 'incomplete') {
     filteredTodos = todosJson.filter(todo => todo.status === 'pending');
   }
-  
-  // Update the UI based on the filtered todos
   if (filteredTodos.length === 0) {
     todosHtml.innerHTML = '';
-    emptyImage.style.display = 'block'; // Show empty image if no todos
+    emptyImage.style.display = 'block';
   } else {
     todosHtml.innerHTML = filteredTodos.map((todo, index) => getTodoHtml(todo, index)).join('');
-    emptyImage.style.display = 'none'; // Hide empty image if todos are present
+    emptyImage.style.display = 'none';
   }
 }
 
-// Generate HTML for a todo item
+// Function to generate HTML for a todo item
 function getTodoHtml(todo, index) {
   return `
     <li>
@@ -56,87 +51,88 @@ function getTodoHtml(todo, index) {
   `;
 }
 
-// Format date as day/month/year hh:mm:ss
+// Function to format the date and time with AM/PM
 function formatDate(date) {
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
   const year = date.getFullYear();
-  const hours = String(date.getHours()).padStart(2, '0');
+  let hours = date.getHours();
   const minutes = String(date.getMinutes()).padStart(2, '0');
   const seconds = String(date.getSeconds()).padStart(2, '0');
-  return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`; // Format as dd/mm/yyyy hh:mm:ss
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  return `${day}/${month}/${year} ${hours}:${minutes}:${seconds} ${ampm}`; // Format as dd/mm/yyyy hh:mm:ss AM/PM
 }
 
-// Add a new todo item
+// Function to add a new todo
 function addTodo() {
   let todo = input.value.trim();
   if (!todo) {
-    alert("Add some text in your input!"); // Alert if input is empty
+    alert("Add some text in your input!");
     return;
   }
 
-  const timestamp = formatDate(new Date()); // Get formatted timestamp
+  const timestamp = formatDate(new Date()); // Use the new format
   todosJson.unshift({ name: todo, status: "pending", timestamp: timestamp });
-  localStorage.setItem("todos", JSON.stringify(todosJson)); // Save todos to localStorage
-  input.value = ""; // Clear input field
-  showTodos(currentFilter); // Refresh the todo list
+  localStorage.setItem("todos", JSON.stringify(todosJson));
+  input.value = "";
+  showTodos(currentFilter);
 }
 
-// Handle Enter key to add todo
+// Event listener for the Enter key to add a todo
 input.addEventListener("keyup", e => {
   if (e.key === "Enter") {
     addTodo();
   }
 });
 
-// Handle keydown events for special functionality
+// Event listener for the / key to focus on the input
 document.addEventListener("keydown", e => {
   if (e.key === "/" && document.activeElement !== input) {
     e.preventDefault();  // Prevent default action of the forward slash key
-    input.focus(); // Focus on the input field
+    input.focus();
   } else if (document.activeElement !== input) {
-    showJumpToSearchMessage(); // Show message if not focusing on input
+    showJumpToSearchMessage();
   }
 });
 
-// Add event listener to Add button
+// Event listener for the Add button to add a todo
 addButton.addEventListener("click", addTodo);
 
-// Update the status of a todo item (completed or pending)
+// Function to update the status of a todo
 window.updateStatus = function(todo) {
   let index = todo.dataset.index;
   let filteredTodos = getFilteredTodos();
   let originalIndex = todosJson.indexOf(filteredTodos[index]);
   todosJson[originalIndex].status = todo.checked ? "completed" : "pending";
-  localStorage.setItem("todos", JSON.stringify(todosJson)); // Save updated todos to localStorage
-  showTodos(currentFilter); // Refresh the todo list
+  localStorage.setItem("todos", JSON.stringify(todosJson));
+  showTodos(currentFilter);
 }
 
-// Remove a todo item
+// Function to remove a todo
 window.remove = function(todo) {
   const index = parseInt(todo.dataset.index);
   let filteredTodos = getFilteredTodos();
   const originalIndex = todosJson.indexOf(filteredTodos[index]);
-  todosJson.splice(originalIndex, 1); // Remove item from array
-  localStorage.setItem("todos", JSON.stringify(todosJson)); // Save updated todos to localStorage
-  showTodos(currentFilter); // Refresh the todo list
+  todosJson.splice(originalIndex, 1);
+  localStorage.setItem("todos", JSON.stringify(todosJson));
+  showTodos(currentFilter);
 }
 
-// Delete all todo items
+// Event listener for the Delete All button to remove all todos
 deleteAllButton.addEventListener("click", () => {
   todosJson = [];
-  localStorage.setItem("todos", JSON.stringify(todosJson)); // Clear localStorage
-  showTodos(currentFilter); // Refresh the todo list
+  localStorage.setItem("todos", JSON.stringify(todosJson));
+  showTodos(currentFilter);
 });
 
-// Show all todos
+// Event listeners for the filter buttons
 showAllButton.addEventListener("click", () => showTodos());
-// Show completed todos
 showCompletedButton.addEventListener("click", () => showTodos('completed'));
-// Show incomplete todos
 showIncompleteButton.addEventListener("click", () => showTodos('incomplete'));
 
-// Edit a todo item
+// Function to edit a todo
 window.editTask = function(btn) {
   const index = btn.dataset.index;
   let filteredTodos = getFilteredTodos();
@@ -144,23 +140,23 @@ window.editTask = function(btn) {
   const updatedTaskText = prompt("Edit Task:", todosJson[originalIndex].name);
   if (updatedTaskText !== null && updatedTaskText.trim() !== "") {
     todosJson[originalIndex].name = updatedTaskText;
-    localStorage.setItem("todos", JSON.stringify(todosJson)); // Save updated todos to localStorage
-    showTodos(currentFilter); // Refresh the todo list
+    localStorage.setItem("todos", JSON.stringify(todosJson));
+    showTodos(currentFilter);
   }
 }
 
-// Get filtered todos based on the current filter
+// Function to get filtered todos based on the current filter
 function getFilteredTodos() {
   if (currentFilter === 'completed') {
     return todosJson.filter(todo => todo.status === 'completed');
   } else if (currentFilter === 'incomplete') {
     return todosJson.filter(todo => todo.status === 'pending');
   } else {
-    return todosJson; // No filter applied
+    return todosJson;
   }
 }
 
-// Show a message prompting to jump to the search box
+// Function to show a message for the forward slash key shortcut
 function showJumpToSearchMessage() {
   const messageDiv = document.createElement('div');
   messageDiv.textContent = 'Press / to jump to the search box.';
@@ -175,9 +171,9 @@ function showJumpToSearchMessage() {
   messageDiv.style.zIndex = '1000';
   document.body.appendChild(messageDiv);
   setTimeout(() => {
-    document.body.removeChild(messageDiv); // Remove the message after 3 seconds
+    document.body.removeChild(messageDiv);
   }, 3000);
 }
 
-// Initial display of todos
+// Display todos on page load
 showTodos();
