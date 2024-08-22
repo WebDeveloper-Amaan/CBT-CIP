@@ -1,0 +1,351 @@
+body {
+    margin: 0;
+    font-family: 'Rubik', sans-serif;
+    background: #111;
+    color: #fff;
+}
+
+/* Ensuring consistent box-sizing across elements */
+* {
+    box-sizing: border-box;
+}
+
+/* Styling the headings */
+h1, h3 {
+    font-weight: 400;
+}
+
+.weather-app {
+    min-height: 100vh;
+    background-image: url('./images/day/cloudy.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    transition: 500ms;
+    color: #fff;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Animation for fading in the weather app */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Overlay to darken the background image */
+.weather-app::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 0;
+}
+
+.container {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 2em;
+}
+
+/* Styling the city name, date, and time */
+.city-time h1 {
+    margin: 0;
+    margin-bottom: 0.5em;
+    font-size: 3em;
+}
+
+.city-time .date, .city-time .time {
+    font-size: 1.2em;
+    margin-top: 0.5em;
+}
+
+.city-time {
+    color: #fff;
+    text-align: right;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.temp-weather {
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2em;
+}
+
+/* Styling the temperature display */
+.temp {
+    font-size: 7em;
+    margin: 0;
+}
+
+/* Styling the weather condition display */
+.weather {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weather img {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 0.5em;
+    background: rgba(110, 110, 110, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    z-index: 1;
+}
+
+/* Styling the weather condition text */
+.condition {
+    margin: 0;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.panel {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(110, 110, 110, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    z-index: 1;
+    padding: 3em 2em;
+    overflow-y: scroll;
+    direction: rtl;
+}
+
+/* Ensuring text direction within the panel */
+.panel * {
+    direction: ltr;
+}
+
+/* Styling the form inside the panel */
+.panel form {
+    margin-bottom: 3em;
+}
+
+/* Styling the search button */
+.submit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1.5em;
+    margin: 0;
+    border: none;
+    outline: none;
+    background: #fa6d1b;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: 0.45s;
+}
+
+/* Hover effect for the search button */
+.submit:hover {
+    background: #fff !important;
+    color: #000;
+}
+
+/* Styling the search input */
+.search {
+    background: none;
+    border: none;
+    border-bottom: 1px #ccc solid;
+    padding: 0 1em 0.5em 0;
+    width: 80%;
+    color: #fff;
+    font-size: 1.1em;
+}
+
+/* Removing outline on focus */
+.search:focus {
+    outline: none;
+}
+
+/* Styling the placeholder text in the search input */
+.search::placeholder {
+    color: #ccc;
+}
+
+/* Styling the list elements in the panel */
+.panel ul {
+    padding: 0 1em 0;
+    margin: 2em 0;
+    border-bottom: 1px #ccc solid;
+}
+
+.panel ul li {
+    color: #ccc;
+    margin: 2.5em 0;
+}
+
+.panel ul h4 {
+    margin: 3em 0;
+}
+
+/* Styling each city in the list */
+.city {
+    display: block;
+    cursor: pointer;
+}
+
+/* Hover effect for the cities in the list */
+.city:hover {
+    color: #fff;
+}
+
+/* Styling the details list */
+.details li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Styling the prompt that appears for the search shortcut */
+.prompt {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 0.5em;
+    border-radius: 5px;
+    display: none;
+    z-index: 2;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+/* Styling the forecast container */
+.forecast {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+/* Styling each forecast item */
+.forecast .day {
+    background: rgba(110, 110, 110, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 10px;
+    margin: 10px;
+    width: 100px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.forecast-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: transparent;
+    width: 120px;
+}
+
+.forecast-date {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.forecast-temp {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.forecast-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.forecast-condition {
+    font-size: 14px;
+    text-align: center;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+
+/* Ensuring responsive design on smaller screens */
+@media (max-width: 768px) {
+    .panel {
+        width: 100%;
+    }
+
+    .temp-weather {
+        position: static;
+        transform: none;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-bottom: 0;
+        margin-top: 2em;
+    }
+
+    .container {
+        width: 100%;
+        align-items: center;
+    }
+
+    .city-time {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .panel, .container {
+        position: relative;
+        width: 100%;
+        top: initial;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    html {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-height: 300px) {
+    .weather-app {
+        min-height: 40em;
+    }
+} 

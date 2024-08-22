@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <!-- Linking to Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Linking to the external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="weather-app">
+        <div class="panel">
+            <!-- Form to take city name input from the user -->
+            <form id="locationInput">
+                <input type="text" class="search" placeholder="Enter city name...">
+                <!-- Button to submit the search form -->
+                <button class="submit"><i class="fa-brands fa-searchengin"></i> Search</button>
+            </form>
+            <!-- List to display recently searched cities -->
+            <ul class="cities"></ul>
+            <!-- List to display weather details like cloudiness, humidity, and wind speed -->
+            <ul class="details">
+                <li>Cloudiness: <span class="cloud">0%</span></li>
+                <li>Humidity: <span class="humidity">0%</span></li>
+                <li>Wind Speed: <span class="wind">0 km/h</span></li>
+            </ul>
+            <!-- Container for displaying the weather forecast -->
+            <div class="forecast">
+                <!-- Forecast data will be inserted here dynamically -->
+            </div>
+        </div>
+        <div class="temp-weather">
+            <!-- Displaying the current temperature -->
+            <div class="temp">0&#176;</div>
+            <!-- Displaying the weather condition with an icon -->
+            <div class="weather">
+                <img class="icon" src="http://openweathermap.org/img/wn/01d@2x.png" alt="Weather Icon">
+                <h3 class="condition">Condition</h3>
+            </div>
+        </div>
+        <div class="container">
+            <!-- Displaying the city name, date, and time -->
+            <div class="city-time">
+                <h1 class="name">City Name</h1>
+                <h3 class="date">Day, Date Month Year</h3>
+                <h3 class="time">00:00</h3>
+            </div>
+        </div>
+    </div>
+    <!-- Linking to the external JavaScript file -->
+    <script src="app.js"></script>
+</body>
+</html>
